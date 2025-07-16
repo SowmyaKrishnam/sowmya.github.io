@@ -1,203 +1,792 @@
+Conversation opened. 1 unread message.
+
+Skip to content
+Using Gmail with screen readers
+1 of 80,971
+(no subject)
+Inbox
+
+sowmya krishnam <krishnamsowmya456@gmail.com>
+Attachments
+7:17 PM (0 minutes ago)
+to me
+
+
+ One attachment
+  •  Scanned by Gmail
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sowmya Krishnam - Professional Profile</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Sowmya Krishnam - Data Analyst Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light grey background */
+            background-color: #f8f8f8;
+            color: #333;
         }
-        /* Custom scrollbar for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
-        ::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 10px;
+        .header-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
+        .project-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            backdrop-filter: blur(5px); /* Blur effect */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-out;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .modal-content {
+                max-width: 700px; /* Larger max-width on desktop */
+            }
+        }
+        .project-image-container { /* Renamed from project-icon-container for clarity */
+            width: 100%;
+            height: 12rem; /* h-48 is 12rem */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top-left-radius: 0.75rem; /* rounded-t-xl */
+            border-top-right-radius: 0.75rem; /* rounded-t-xl */
+            overflow: hidden; /* Ensure image doesn't spill */
+        }
+        .project-image-container img,
+        .project-image-container svg {
+            width: 100%; /* Make image/svg fill container */
+            height: 100%; /* Make image/svg fill container */
+            object-fit: cover; /* Cover the area without distortion */
+        }
+        /* Specific background colors for each icon container */
+        .project-image-container.bg-brewery { background-color: #A78BFA; } /* purple-400 */
+        .project-image-container.bg-supplychain { background-color: #60A5FA; } /* blue-400 */
+        .project-image-container.bg-azuremigration { background-color: #34D399; } /* emerald-400 */
+        .project-image-container.bg-executive { background-color: #FBBF24; } /* amber-400 */
+        .project-image-container.bg-ageing { background-color: #EC4899; } /* pink-400 */
+        .project-image-container.bg-salesautomation { background-color: #8B5CF6; } /* violet-400 */
+
+        /* Custom styles for ximpact.tech similarity */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: #e2e8f0; /* Tailwind gray-200 */
+            color: #4a5568; /* Tailwind gray-700 */
+        }
+        .hero-section {
+            padding: 8rem 1rem; /* More vertical padding */
+        }
+        .section-heading {
+            font-size: 3.5rem; /* Larger heading */
+            line-height: 1.2;
+            font-weight: 800; /* Extra bold */
+            margin-bottom: 2.5rem;
+        }
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #666;
+            max-width: 4xl;
+            margin: 0 auto 3rem auto;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem; /* More rounded */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .cta-button.primary {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .cta-button.secondary {
+            background-color: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        .cta-button.secondary:hover {
+            background-color: #edf2f7; /* Tailwind gray-100 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .card-section {
+            padding: 4rem 1rem;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        .experience-item {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 3px solid #cbd5e0; /* light gray border */
+            margin-bottom: 2rem;
+        }
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem; /* Adjust to center on the line */
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: #667eea; /* Primary color dot */
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #667eea; /* Outer ring */
+        }
+        .experience-item h3 {
+            font-size: 1.75rem; /* Larger experience title */
+            font-weight: 700;
+            color: #2d3748; /* Darker text */
+            margin-bottom: 0.5rem;
+        }
+        .experience-item p {
+            font-size: 1rem;
+            color: #718096;
+        }
+        .experience-item ul {
+            list-style: none; /* Remove default bullet */
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+        .experience-item ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+        .experience-item ul li::before {
+            content: '•'; /* Custom bullet */
+            position: absolute;
+            left: 0;
+            color: #667eea; /* Primary color bullet */
+            font-weight: bold;
+        }
+        .highlight-card {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); /* Subtle gradient */
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .highlight-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        .highlight-card p:first-child {
+            font-size: 4rem; /* Larger numbers */
+            font-weight: 800;
+            color: #667eea; /* Primary color */
+            margin-bottom: 0.5rem;
+        }
+        .education-card {
+            background-color: #f0f4f8;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .contact-cta-buttons {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 1rem; /* Space between buttons */
+            justify-content: center;
+        }
+        .contact-cta-buttons .cta-button {
+            min-width: 180px; /* Ensure buttons have a minimum width */
         }
     </style>
 </head>
-<body class="antialiased text-gray-800">
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl w-full bg-white shadow-xl rounded-xl overflow-hidden">
-            <!-- Header Section -->
-            <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 sm:p-10 text-center rounded-t-xl">
-                <div class="flex flex-col items-center">
-                    <!-- Profile Picture Placeholder - Initial "SK" for Sowmya Krishnam -->
-                    <img src="https://placehold.co/120x120/007bff/ffffff?text=SK" alt="Profile Picture" class="w-28 h-28 rounded-full border-4 border-white shadow-lg mb-4">
-                    <h1 class="text-3xl sm:text-4xl font-bold mb-2">SOWMYA KRISHNAM</h1>
-                    <p class="text-lg sm:text-xl font-light">Data Analyst | Business Intelligence | Cloud Data Migration</p>
-                    <div class="mt-4 flex flex-wrap justify-center gap-4">
-                        <a href="mailto:krishnamsowmya456@gmail.com" class="flex items-center text-white hover:text-blue-200 transition duration-300">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                            krishnamsowmya456@gmail.com
-                        </a>
-                        <a href="tel:+918333938185" class="flex items-center text-white hover:text-blue-200 transition duration-300">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
-                            +91-8333938185
-                        </a>
-                        <a href="https://www.linkedin.com/in/sowmya-krishnam" target="_blank" rel="noopener noreferrer" class="flex items-center text-white hover:text-blue-200 transition duration-300">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.325-.028-3.044-1.853-3.044-1.854 0-2.136 1.445-2.136 2.951v5.662H9.59V9.218h3.413v1.565h.045c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.003c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.452H3.555V9.218h3.564v11.234zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454c.98 0 1.772-.773 1.772-1.729V1.729C24 .774 23.207 0 22.225 0z"></path></svg>
-                            LinkedIn Profile
-                        </a>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar py-4">
+        <div class="container flex justify-between items-center">
+            <div class="text-2xl font-extrabold text-gray-800">Sowmya Krishnam</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#summary" class="nav-link text-gray-700 font-medium">About</a>
+                <a href="#experience" class="nav-link text-gray-700 font-medium">Experience</a>
+                <a href="#projects" class="nav-link text-gray-700 font-medium">Projects</a>
+                <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
+            </div>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-8 text-xl">
+            <button id="close-mobile-menu" class="absolute top-4 right-4 text-gray-700 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <a href="#summary" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">About</a>
+            <a href="#experience" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Experience</a>
+            <a href="#projects" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Projects</a>
+            <a href="#contact" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (formerly Header) -->
+    <section class="hero-section header-bg text-white text-center shadow-lg">
+        <div class="container">
+            <h1 class="section-heading mb-4 animate-fade-in-down">Driving Data-Led Decisions for Business Growth</h1>
+            <p class="sub-heading mb-6 animate-fade-in-up">
+                Results-oriented Data Analyst with 4.5 years of experience in FinTech, Banking, and Product-based sectors, specializing in real-time dashboards, MIS automation, and cloud data migration.
+            </p>
+            <div class="flex justify-center space-x-4 animate-fade-in-up">
+                <a href="#projects" class="cta-button primary">
+                    View My Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sowmya-krishnam" target="_blank" class="cta-button secondary">
+                    Connect on LinkedIn <i class="fab fa-linkedin ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Summary Section (now "About Me") -->
+    <section id="summary" class="card-section mx-4 md:mx-auto mt-8">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">About Me</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+                I am a results-oriented Data Analyst with 4.5 years of experience across FinTech, Banking, and Product-based sectors. My passion lies in transforming raw data into actionable insights that drive operational efficiency and support strategic decision-making. I have a proven track record in building dynamic real-time dashboards, automating critical MIS reports, and successfully leading complex database migration projects to Azure SQL. I excel at stakeholder engagement, conducting in-depth root cause analysis (RCA), and collaborating cross-functionally to track key performance indicators (KPIs) for leadership. My expertise spans cloud platforms (Azure, Databricks), ETL processes, and ensuring data quality and governance.
+            </p>
+        </div>
+    </section>
+
+    <!-- Core Competencies Section -->
+    <section id="competencies" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">My Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-chart-bar text-purple-600 mr-3"></i>Business Intelligence</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>Power BI, Tableau</li>
+                        <li>Smart Narratives, KPI Dashboards</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-database text-blue-600 mr-3"></i>SQL Expertise</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>MS SQL Server, Oracle</li>
+                        <li>Databricks SQL, Spark SQL</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-cloud text-teal-600 mr-3"></i>Cloud & Data Engineering</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>Azure SQL, ADF (Beginner)</li>
+                        <li>SSIS</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-robot text-red-600 mr-3"></i>Workflow Automation</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>Power Automate</li>
+                        <li>Python (basic)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-file-alt text-green-600 mr-3"></i>Reporting & Compliance</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>MIS Reporting, RBI Compliance</li>
+                        <li>UAT, BRD</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-check-circle text-orange-600 mr-3"></i>Data Quality & Governance</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>Data wrangling, integrity checks</li>
+                        <li>Error handling</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-tasks text-indigo-600 mr-3"></i>Project Management Tools</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>JIRA (Kanban methodology)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-file-excel text-emerald-600 mr-3"></i>Advanced Excel</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                        <li>Data modelling, dashboarding</li>
+                        <li>Forecasting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience" class="card-section mx-4 md:mx-auto mt-8">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Professional Experience</h2>
+            <div class="space-y-10 max-w-4xl mx-auto">
+                <!-- United Breweries -->
+                <div class="experience-item">
+                    <h3 class="text-gray-900">Data Analyst <span class="text-lg font-normal text-gray-600">- United Breweries (Heineken), Bangalore</span></h3>
+                    <p class="text-md text-gray-500 mb-3">Sep 2023 - Present</p>
+                    <ul>
+                        <li>Spearheaded the Oracle to Azure SQL migration with zero downtime and enhanced post-migration query performance.</li>
+                        <li>Developed and maintained real-time Power BI dashboards for tracking production, dispatch, and supply chain KPIs.</li>
+                        <li>Delivered root cause analyses for operational inefficiencies to support strategic interventions.</li>
+                        <li>Built executive summary dashboards in Supply chain for MD/CEO with Smart Narrative insights.</li>
+                        <li>Automated MIS workflows via Power Automate and Python, reducing manual dependencies.</li>
+                    </ul>
+                </div>
+                <!-- Cholamandalam Investment and Finance -->
+                <div class="experience-item">
+                    <h3 class="text-gray-900">Data Analyst <span class="text-lg font-normal text-gray-600">- Cholamandalam Investment and Finance</span></h3>
+                    <p class="text-md text-gray-500 mb-3">Jan 2023 - Aug 2023</p>
+                    <ul>
+                        <li>Automated legacy reports, reducing TAT by 40%, and ensured consistent data availability.</li>
+                        <li>Provided data-driven insights to leadership to support business strategy alignment.</li>
+                        <li>Collaborated with cross-functional teams to define KPIs and visualize progress.</li>
+                    </ul>
+                </div>
+                <!-- HDFC Bank -->
+                <div class="experience-item">
+                    <h3 class="text-gray-900">Junior Data Analyst <span class="text-lg font-normal text-gray-600">- HDFC Bank</span></h3>
+                    <p class="text-md text-gray-500 mb-3">Sep 2020 - Dec 2022</p>
+                    <ul>
+                        <li>Ensured regulatory compliance through accurate RBI reporting and governance controls.</li>
+                        <li>Conducted User Acceptance Testing (UAT) and created detailed BRDs for data systems.</li>
+                        <li>Developed dashboards in Tableau and created stored procedures to enhance reporting agility.</li>
+                        <li>Led data segmentation and campaign performance analysis for business growth initiatives.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Select Projects Section -->
+    <section id="projects" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Brewery Dispatch & Production Dashboard -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="brewery">
+                    <div class="project-image-container bg-brewery">
+                        <!-- Image for Brewery Dispatch -->
+                        <img src="https://placehold.co/600x400/A78BFA/ffffff?text=Beer+Dispatch" alt="Brewery Dispatch" class="w-full h-full object-cover rounded-t-xl">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Brewery Dispatch & Production Dashboard</h3>
+                        <p class="text-gray-700 text-sm">Built end-to-end Power BI dashboards linked to Azure SQL and automated with Power Automate. Enabled real-time RCA and target vs actual variance tracking.</p>
                     </div>
                 </div>
-            </header>
 
-            <!-- Main Content Area -->
-            <main class="p-6 sm:p-8">
-                <!-- About Me Section (Professional Summary) -->
-                <section class="mb-8 pb-8 border-b border-gray-200">
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Professional Summary</h2>
-                    <p class="text-base leading-relaxed text-gray-700">
-                        Results-oriented Data Analyst with 4.5 years of experience in FinTech, Banking, and Product-based sectors, driving data-led decision-making, operational efficiency, and executive insight delivery. Proven expertise in building real-time dashboards, automating MIS, and leading database migration projects to Azure SQL. Adept at stakeholder engagement, root cause analysis (RCA), and supporting leadership with strategic KPI tracking. Familiar with cloud platforms (Azure, Databricks), ETL processes, and cross-functional collaboration.
-                    </p>
-                </section>
-
-                <!-- Experience Section -->
-                <section class="mb-8 pb-8 border-b border-gray-200">
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Professional Experience</h2>
-
-                    <div class="mb-6">
-                        <h3 class="text-xl font-medium text-gray-900">Data Analyst</h3>
-                        <p class="text-md text-gray-600">United Breweries (Heineken), Bangalore</p>
-                        <p class="text-sm text-gray-500 mb-2">Sep 2023 – Present</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Spearheaded the Oracle to Azure SQL migration with zero downtime and enhanced post-migration query performance.</li>
-                            <li>Developed and maintained real-time Power BI dashboards for tracking production, dispatch, and supply chain KPIs.</li>
-                            <li>Delivered root cause analyses for operational inefficiencies to support strategic interventions.</li>
-                            <li>Built executive summary dashboards in Supply chain for MD/CEO with Smart Narrative insights.</li>
-                            <li>Automated MIS workflows via Power Automate and Python, reducing manual dependencies.</li>
-                        </ul>
+                <!-- Project 2: Supply Chain KPI Dashboards -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="supplychain">
+                    <div class="project-image-container bg-supplychain">
+                        <!-- SVG Icon for Supply Chain -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 9h-4V3H7v6H3l8 9 8-9zM3 19h18v2H3z"/>
+                        </svg>
                     </div>
-
-                    <div class="mb-6">
-                        <h3 class="text-xl font-medium text-gray-900">Data Analyst</h3>
-                        <p class="text-md text-gray-600">Cholamandalam Investment and Finance</p>
-                        <p class="text-sm text-gray-500 mb-2">Jan 2023 – Aug 2023</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Automated legacy reports, reducing TAT by 40%, and ensured consistent data availability.</li>
-                            <li>Provided data-driven insights to leadership to support business strategy alignment.</li>
-                            <li>Collaborated with cross-functional teams to define KPIs and visualize progress.</li>
-                        </ul>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Supply Chain KPI Dashboards</h3>
+                        <p class="text-gray-700 text-sm">Visualized performance metrics like downtime, production loss, and its impact on sales using global cubes, aiding national benchmarking and strategic alignment.</p>
                     </div>
+                </div>
 
-                    <div class="mb-6">
-                        <h3 class="text-xl font-medium text-gray-900">Junior Data Analyst</h3>
-                        <p class="text-md text-gray-600">HDFC Bank</p>
-                        <p class="text-sm text-gray-500 mb-2">Sep 2020 – Dec 2022</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1">
-                            <li>Ensured regulatory compliance through accurate RBI reporting and governance controls.</li>
-                            <li>Conducted User Acceptance Testing (UAT) and created detailed BRDs for data systems.</li>
-                            <li>Developed dashboards in Tableau and created stored procedures to enhance reporting agility.</li>
-                            <li>Led data segmentation and campaign performance analysis for business growth initiatives.</li>
-                        </ul>
+                <!-- Project 3: SQL to Azure Migration -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="azuremigration">
+                    <div class="project-image-container bg-azuremigration">
+                        <!-- SVG Icon for Migration (Database to Cloud) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V7h2v2zm3 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm3 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zM7 12c0 2.76 2.24 5 5 5s5-2.24 5-5H7z"/>
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-3.72 0-6.75 2.71-7.29 6.21C2.86 10.66 1 12.82 1 15.5c0 3.03 2.47 5.5 5.5 5.5h12.17c2.19 0 3.98-1.79 3.98-3.98 0-2.19-1.79-3.98-3.98-3.98zM12 18l-4-4h3V9h2v5h3l-4 4z"/>
+                        </svg>
                     </div>
-                </section>
-
-                <!-- Education Section -->
-                <section class="mb-8 pb-8 border-b border-gray-200">
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Education & Certifications</h2>
-                    <div class="mb-4">
-                        <h3 class="text-xl font-medium text-gray-900">MBA-Banking Technology</h3>
-                        <p class="text-md text-gray-600">May 2020</p>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">SQL to Azure Migration</h3>
+                        <p class="text-gray-700 text-sm">Planned and executed end-to-end data migration and architecture redesign from on-prem to Azure. Improved data pipeline efficiency and reporting security.</p>
                     </div>
-                </section>
+                </div>
 
-                <!-- Skills Section (Core Competencies) -->
-                <section class="mb-8 pb-8 border-b border-gray-200">
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Core Competencies</h2>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Power BI</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Smart Narratives</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">KPI Dashboards</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">MS SQL Server</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Oracle</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Databricks SQL</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Spark SQL</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Azure SQL</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">ADF (Beginner)</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">SSIS</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Power Automate</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Python (basic)</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">MIS Reporting</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">RBI Compliance</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">UAT</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">BRD</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Data Wrangling</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Data Integrity Checks</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Error Handling</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">JIRA (Kanban)</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Advanced Excel</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Data Modelling</span>
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Forecasting</span>
+                <!-- Project 4: Executive Summary Dashboard -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="executive">
+                    <div class="project-image-container bg-executive">
+                        <!-- SVG Icon for Executive Dashboard (Growth Chart) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 11V7h-4V3H7v4H3v4h4v4h4v4h4v-4h4v-4h-4zm-2 0h-4V7h4v4z"/>
+                            <path d="M5 18h14V6H5v12zm2-2h10V8H7v8zm-2 4h14v-2H5v2zm0-16h14V2H5v2z"/>
+                        </svg>
                     </div>
-                </section>
-
-                <!-- Projects Section -->
-                <section class="mb-8 pb-8 border-b border-gray-200">
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Select Projects</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">Brewery Dispatch & Production Dashboard</h3>
-                            <p class="text-gray-700 text-sm mb-3">Built end-to-end Power BI dashboards linked to Azure SQL and automated with Power Automate. Enabled real-time RCA and target vs actual variance tracking.</p>
-                            <!-- Add project link if available -->
-                            <!-- <a href="#" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a> -->
-                        </div>
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">Supply Chain KPI Dashboards</h3>
-                            <p class="text-gray-700 text-sm mb-3">Visualized performance metrics like downtime, production loss, and its impact on sales using global cubes, aiding national benchmarking and strategic alignment.</p>
-                        </div>
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">SQL to Azure Migration</h3>
-                            <p class="text-gray-700 text-sm mb-3">Planned and executed end-to-end data migration and architecture redesign from on-prem to Azure. Improved data pipeline efficiency and reporting security.</p>
-                        </div>
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">Executive Summary Dashboard</h3>
-                            <p class="text-gray-700 text-sm mb-3">Developed an MD-facing dashboard combining key KPIs across manufacturing and dispatch. Used Smart Narrative visualizations for top-level decision support.</p>
-                        </div>
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">Finished Goods Ageing Dashboard</h3>
-                            <p class="text-gray-700 text-sm mb-3">Built automated alerting mechanisms to flag ageing stock, reducing potential write-offs and ensuring inventory optimization.</p>
-                        </div>
-                        <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-100">
-                            <h3 class="text-xl font-medium text-gray-900 mb-2">Sales Data Management & Automation</h3>
-                            <p class="text-gray-700 text-sm mb-3">Automated monthly sales data loads with Python + Power Automate, ensuring data integrity and reducing human error in MIS.</p>
-                        </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Executive Summary Dashboard</h3>
+                        <p class="text-gray-700 text-sm">Developed an MD-facing dashboard combining key KPIs across manufacturing and dispatch. Used Smart Narrative visualizations for top-level decision support.</p>
                     </div>
-                </section>
+                </div>
 
-                <!-- Key Performance Highlights Section -->
-                <section>
-                    <h2 class="text-2xl sm:text-3xl font-semibold text-blue-700 mb-4">Key Performance Highlights</h2>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1">
-                        <li>100% on-time delivery of dashboards and reporting pipelines</li>
-                        <li>Zero data integrity issues post Oracle to Azure migration</li>
-                        <li>>90% stakeholder satisfaction (qualitative feedback from cross-functional teams)</li>
-                        <li>Enabled >30% improvement in data-driven decision-making for leadership reviews</li>
-                    </ul>
-                </section>
-            </main>
+                <!-- Project 5: Finished Goods Ageing Dashboard -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="ageing">
+                    <div class="project-image-container bg-ageing">
+                        <!-- SVG Icon for Ageing Stock (Clock and Box) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            <path d="M14 10H8c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 6H8v-4h6v4z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Finished Goods Ageing Dashboard</h3>
+                        <p class="text-gray-700 text-sm">Built automated alerting mechanisms to flag ageing stock, reducing potential write-offs and ensuring inventory optimization.</p>
+                    </div>
+                </div>
 
-            <!-- Footer Section -->
-            <footer class="bg-gray-800 text-white p-6 sm:p-8 text-center rounded-b-xl mt-8">
-                <p class="text-sm">&copy; 2025 Sowmya Krishnam. All rights reserved.</p>
-                <p class="text-xs mt-2">Built with HTML and Tailwind CSS.</p>
-            </footer>
+                <!-- Project 6: Sales Data Management & Automation -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="salesautomation">
+                    <div class="project-image-container bg-salesautomation">
+                        <!-- SVG Icon for Sales Automation (Gear and Bars) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.74-1.71-1l-.34-2.52c-.04-.24-.24-.42-.48-.42h-4c-.24 0-.44.18-.48.42l-.34 2.52c-.62.26-1.19.6-1.71 1l-2.49-1c-.22-.08-.49 0-.61.22l-2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.09.74 1.71 1l.34 2.52c.04.24.24.42.48.42h4c.24 0 .44-.18.48-.42l.34-2.52c.62-.26 1.19-.6 1.71-1l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                            <path d="M12 17.5c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Sales Data Management & Automation</h3>
+                        <p class="text-gray-700 text-sm">Automated monthly sales data loads with Python + Power Automate, ensuring data integrity and reducing human error in MIS.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Performance Highlights Section -->
+    <section id="highlights" class="card-section mx-4 md:mx-auto mt-8">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Key Performance Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-center">
+                <div class="highlight-card">
+                    <p class="text-purple-600">100%</p>
+                    <p class="text-lg text-gray-700">On-time delivery of dashboards and reporting pipelines</p>
+                </div>
+                <div class="highlight-card">
+                    <p class="text-blue-600">Zero</p>
+                    <p class="text-lg text-gray-700">Data integrity issues post Oracle to Azure migration</p>
+                </div>
+                <div class="highlight-card">
+                    <p class="text-green-600">>90%</p>
+                    <p class="text-lg text-gray-700">Stakeholder satisfaction (qualitative feedback from cross-functional teams)</p>
+                </div>
+                <div class="highlight-card">
+                    <p class="text-red-600">>30%</p>
+                    <p class="text-lg text-gray-700">Improvement in data-driven decision-making for leadership reviews</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-10">Education</h2>
+            <div class="education-card max-w-xl mx-auto">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-2">MBA - Banking Technology</h3>
+                <p class="text-xl text-gray-700">May 2020</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="card-section mx-4 md:mx-auto mt-8 mb-8">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-10">Get In Touch</h2>
+            <p class="text-lg text-gray-700 mb-8">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+            <div class="contact-cta-buttons">
+                <a href="mailto:krishnamsowmya456@gmail.com" class="cta-button primary">
+                    <i class="fas fa-envelope mr-3"></i>Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/sowmya-krishnam" target="_blank" class="cta-button secondary">
+                    <i class="fab fa-linkedin mr-3"></i>Connect on LinkedIn
+                </a>
+                <a href="tel:+918333938185" class="cta-button primary">
+                    <i class="fas fa-phone mr-3"></i>Call Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <div class="container">
+            <p>&copy; 2024 Sowmya Krishnam. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal Structure -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-900 mb-4"></h3>
+            <p id="modalProjectDescription" class="text-gray-700 text-lg leading-relaxed"></p>
+            <div id="modalProjectDetails" class="mt-6 text-gray-800">
+                <!-- Additional details will be inserted here by JS -->
+            </div>
         </div>
     </div>
+
+    <script>
+        // Project data for modal
+        const projectsData = {
+            brewery: {
+                title: "Brewery Dispatch & Production Dashboard",
+                description: "Built end-to-end Power BI dashboards linked to Azure SQL and automated with Power Automate. Enabled real-time RCA and target vs actual variance tracking.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Developed interactive Power BI dashboards for real-time monitoring.</li>
+                        <li>Integrated with Azure SQL for robust data storage.</li>
+                        <li>Automated data refresh and reporting using Power Automate.</li>
+                        <li>Facilitated root cause analysis (RCA) for production bottlenecks.</li>
+                        <li>Provided insights for target vs actual variance tracking.</li>
+                    </ul>
+                `
+            },
+            supplychain: {
+                title: "Supply Chain KPI Dashboards",
+                description: "Visualized performance metrics like downtime, production loss, and its impact on sales using global cubes, aiding national benchmarking and strategic alignment.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Designed comprehensive dashboards for supply chain performance.</li>
+                        <li>Utilized global cubes for consistent data aggregation.</li>
+                        <li>Enabled national benchmarking for operational excellence.</li>
+                        <li>Supported strategic alignment by highlighting key performance indicators.</li>
+                    </ul>
+                `
+            },
+            azuremigration: {
+                title: "SQL to Azure Migration",
+                description: "Planned and executed end-to-end data migration and architecture redesign from on-prem to Azure. Improved data pipeline efficiency and reporting security.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Successfully migrated large datasets from on-prem to Azure SQL.</li>
+                        <li>Redesigned data architecture for scalability and performance.</li>
+                        <li>Enhanced data pipeline efficiency post-migration.</li>
+                        <li>Implemented robust security measures for reporting.</li>
+                        <li>Achieved zero downtime during the migration process.</li>
+                    </ul>
+                `
+            },
+            executive: {
+                title: "Executive Summary Dashboard",
+                description: "Developed an MD-facing dashboard combining key KPIs across manufacturing and dispatch. Used Smart Narrative visualizations for top-level decision support.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Created high-level dashboards for executive decision-making.</li>
+                        <li>Integrated data from multiple departments (manufacturing, dispatch).</li>
+                        <li>Leveraged Power BI's Smart Narratives for automated insights.</li>
+                        <li>Provided clear, concise summaries for leadership reviews.</li>
+                    </ul>
+                `
+            },
+            ageing: {
+                title: "Finished Goods Ageing Dashboard",
+                description: "Built automated alerting mechanisms to flag ageing stock, reducing potential write-offs and ensuring inventory optimization.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Implemented automated alerts for stock nearing expiry.</li>
+                        <li>Significantly reduced potential write-offs due to aged inventory.</li>
+                        <li>Optimized inventory levels and turnover.</li>
+                        <li>Provided real-time visibility into finished goods ageing.</li>
+                    </ul>
+                `
+            },
+            salesautomation: {
+                title: "Sales Data Management & Automation",
+                description: "Automated monthly sales data loads with Python + Power Automate, ensuring data integrity and reducing human error in MIS.",
+                details: `
+                    <p class="mb-2"><strong>Key Achievements:</strong></p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Automated repetitive sales data loading tasks.</li>
+                        <li>Improved data integrity through automated validation checks.</li>
+                        <li>Reduced manual effort and human error in MIS reporting.</li>
+                        <li>Ensured timely and accurate sales data availability.</li>
+                    </ul>
+                `
+            }
+        };
+
+        const projectCards = document.querySelectorAll('.project-card');
+        const modal = document.getElementById('projectModal');
+        const closeButton = document.querySelector('.close-button');
+        const modalProjectTitle = document.getElementById('modalProjectTitle');
+        const modalProjectDescription = document.getElementById('modalProjectDescription');
+        const modalProjectDetails = document.getElementById('modalProjectDetails');
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Function to open the modal
+        function openModal(projectId) {
+            const project = projectsData[projectId];
+            if (project) {
+                modalProjectTitle.textContent = project.title;
+                modalProjectDescription.textContent = project.description;
+                modalProjectDetails.innerHTML = project.details; // Use innerHTML for rich text
+                modal.classList.add('show');
+                modal.style.display = 'flex'; // Use flex to center content
+            }
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300); // Match animation duration
+        }
+
+        // Event listeners for project cards
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.dataset.project;
+                openModal(projectId);
+            });
+        });
+
+        // Event listener for close button
+        closeButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside the content
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Optional: Add a simple fade-in animation for sections on scroll
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            observer.observe(section);
+        });
+
+    </script>
 </body>
 </html>
+code.txt
+Displaying code.txt.
