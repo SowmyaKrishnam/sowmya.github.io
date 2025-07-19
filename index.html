@@ -1,385 +1,195 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sowmya Krishnam - Data Analyst Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .header-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .project-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-            backdrop-filter: blur(5px); /* Blur effect */
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: auto;
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease-out;
-            transform: scale(0.95);
-            transition: transform 0.3s ease-out;
-        }
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .close-button:hover,
-        .close-button:focus {
-            color: #333;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            .modal-content {
-                max-width: 700px; /* Larger max-width on desktop */
-            }
-        }
-        .project-image-container { /* Renamed from project-icon-container for clarity */
-            width: 100%;
-            height: 12rem; /* h-48 is 12rem */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top-left-radius: 0.75rem; /* rounded-t-xl */
-            border-top-right-radius: 0.75rem; /* rounded-t-xl */
-            overflow: hidden; /* Ensure image doesn't spill */
-        }
-        .project-image-container img,
-        .project-image-container svg {
-            width: 100%; /* Make image/svg fill container */
-            height: 100%; /* Make image/svg fill container */
-            object-fit: cover; /* Cover the area without distortion */
-        }
-        /* Specific background colors for each icon container */
-        .project-image-container.bg-brewery { background-color: #A78BFA; } /* purple-400 */
-        .project-image-container.bg-supplychain { background-color: #60A5FA; } /* blue-400 */
-        .project-image-container.bg-azuremigration { background-color: #34D399; } /* emerald-400 */
-        .project-image-container.bg-executive { background-color: #FBBF24; } /* amber-400 */
-        .project-image-container.bg-ageing { background-color: #EC4899; } /* pink-400 */
-        .project-image-container.bg-salesautomation { background-color: #8B5CF6; } /* violet-400 */
-
-        /* Custom styles for ximpact.tech similarity */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-        .nav-link {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .nav-link:hover {
-            background-color: #e2e8f0; /* Tailwind gray-200 */
-            color: #4a5568; /* Tailwind gray-700 */
-        }
-        .hero-section {
-            padding: 8rem 1rem; /* More vertical padding */
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
         }
         .section-heading {
-            font-size: 3.5rem; /* Larger heading */
-            line-height: 1.2;
-            font-weight: 800; /* Extra bold */
-            margin-bottom: 2.5rem;
+            /* Updated color for headings */
+            @apply text-4xl font-bold text-center mb-12 text-indigo-700;
         }
-        .sub-heading {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #666;
-            max-width: 4xl;
-            margin: 0 auto 3rem auto;
+        .card {
+            @apply bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300;
         }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2.5rem;
-            border-radius: 0.75rem; /* More rounded */
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        /* Removed .project-image as we are replacing with icons */
+        .copy-message {
+            @apply fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-md transition-opacity duration-300 opacity-0;
         }
-        .cta-button.primary {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .copy-message.show {
+            opacity: 1;
         }
-        .cta-button.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        /* Custom styling for project cards within experience section - UPDATED FOR LIST WITH ICONS */
+        .project-item-card {
+            @apply bg-white p-5 rounded-xl shadow-md border-l-4 border-teal-500 hover:shadow-lg hover:translate-x-1 transform transition-all duration-300 flex items-start space-x-4;
         }
-        .cta-button.secondary {
-            background-color: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+        .project-item-card .project-icon {
+            @apply flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 text-teal-700 text-2xl font-bold;
         }
-        .cta-button.secondary:hover {
-            background-color: #edf2f7; /* Tailwind gray-100 */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        .project-item-card h5 {
+            @apply text-indigo-800 text-xl font-semibold mb-1; /* Darker heading for contrast */
         }
-        .card-section {
-            padding: 4rem 1rem;
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-top: 2rem;
-        }
-        .experience-item {
-            position: relative;
-            padding-left: 2.5rem;
-            border-left: 3px solid #cbd5e0; /* light gray border */
-            margin-bottom: 2rem;
-        }
-        .experience-item:last-child {
-            margin-bottom: 0;
-        }
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -0.5rem; /* Adjust to center on the line */
-            top: 0.25rem;
-            width: 1rem;
-            height: 1rem;
-            background-color: #667eea; /* Primary color dot */
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 0 0 2px #667eea; /* Outer ring */
-        }
-        .experience-item h3 {
-            font-size: 1.75rem; /* Larger experience title */
-            font-weight: 700;
-            color: #2d3748; /* Darker text */
-            margin-bottom: 0.5rem;
-        }
-        .experience-item p {
-            font-size: 1rem;
-            color: #718096;
-        }
-        .experience-item ul {
-            list-style: none; /* Remove default bullet */
-            padding-left: 0;
-            margin-top: 1rem;
-        }
-        .experience-item ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #4a5568;
-        }
-        .experience-item ul li::before {
-            content: '•'; /* Custom bullet */
-            position: absolute;
-            left: 0;
-            color: #667eea; /* Primary color bullet */
-            font-weight: bold;
-        }
-        .highlight-card {
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); /* Subtle gradient */
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .highlight-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-        .highlight-card p:first-child {
-            font-size: 4rem; /* Larger numbers */
-            font-weight: 800;
-            color: #667eea; /* Primary color */
-            margin-bottom: 0.5rem;
-        }
-        .education-card {
-            background-color: #f0f4f8;
-            border-radius: 1rem;
-            padding: 2.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .contact-cta-buttons {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            gap: 1rem; /* Space between buttons */
-            justify-content: center;
-        }
-        .contact-cta-buttons .cta-button {
-            min-width: 180px; /* Ensure buttons have a minimum width */
+        .project-item-card p {
+            @apply text-gray-700 text-base; /* Ensure readability */
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Navigation Bar -->
-    <nav class="navbar py-4">
-        <div class="container flex justify-between items-center">
-            <div class="text-2xl font-extrabold text-gray-800">Sowmya Krishnam</div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#summary" class="nav-link text-gray-700 font-medium">About</a>
-                <a href="#experience" class="nav-link text-gray-700 font-medium">Experience</a>
-                <a href="#projects" class="nav-link text-gray-700 font-medium">Projects</a>
-                <a href="#contact" class="nav-link text-gray-700 font-medium">Contact</a>
+    <nav class="bg-gray-900 p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-white text-2xl font-bold rounded-lg px-3 py-1 hover:bg-gray-800 transition-colors">Sowmya Krishnam</a>
+            <div class="space-x-4">
+                <a href="#about" class="text-white hover:text-gray-300 transition-colors rounded-lg px-3 py-1 hover:bg-gray-800">About</a>
+                <a href="#skills" class="text-white hover:text-gray-300 transition-colors rounded-lg px-3 py-1 hover:bg-gray-800">Skills</a>
+                <a href="#experience" class="text-white hover:text-gray-300 transition-colors rounded-lg px-3 py-1 hover:bg-gray-800">Experience</a>
+                <a href="#highlights" class="text-white hover:text-gray-300 transition-colors rounded-lg px-3 py-1 hover:bg-gray-800">Highlights</a>
+                <a href="#contact" class="text-white hover:text-gray-300 transition-colors rounded-lg px-3 py-1 hover:bg-gray-800">Contact</a>
             </div>
-            <!-- Mobile Menu Button (Hamburger) -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-8 text-xl">
-            <button id="close-mobile-menu" class="absolute top-4 right-4 text-gray-700 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <a href="#summary" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">About</a>
-            <a href="#experience" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Experience</a>
-            <a href="#projects" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Projects</a>
-            <a href="#contact" class="nav-link text-gray-700 font-medium" onclick="closeMobileMenu()">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section (formerly Header) -->
-    <section class="hero-section header-bg text-white text-center shadow-lg">
-        <div class="container">
-            <h1 class="section-heading mb-4 animate-fade-in-down">Driving Data-Led Decisions for Business Growth</h1>
-            <p class="sub-heading mb-6 animate-fade-in-up">
-                Results-oriented Data Analyst with 5 years of experience in  Banking,NBFC and Alcobev, specializing in real-time dashboards, MIS automation, and cloud data migration.
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-r from-teal-600 to-indigo-700 text-white py-20 md:py-32 flex items-center justify-center min-h-screen-75">
+        <div class="container mx-auto text-center px-4">
+            <img src="https://placehold.co/150x150/60A5FA/FFFFFF?text=SK" alt="Sowmya Krishnam" class="rounded-full w-36 h-36 mx-auto mb-6 border-4 border-white shadow-lg">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">Sowmya Krishnam</h1>
+            <p class="text-2xl md:text-3xl font-light mb-8">Data Analyst | Business Intelligence | Cloud Data Migration</p>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10">
+                Data Analyst with 5 years of experience in FinTech, Banking, and Product-based sectors, specializing in Business Intelligence (Power BI, Tableau), SQL (MS SQL, Oracle, Databricks), and Cloud Data Migration (Azure SQL). Expert in KPI reporting, ETL pipelines, MIS automation, and regulatory compliance.
             </p>
-            <div class="flex justify-center space-x-4 animate-fade-in-up">
-                <a href="#projects" class="cta-button primary">
-                    View My Projects <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/sowmya-krishnam" target="_blank" class="cta-button secondary">
-                    Connect on LinkedIn <i class="fab fa-linkedin ml-2"></i>
-                </a>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#experience" class="bg-white text-teal-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-all shadow-md transform hover:scale-105">View My Projects</a>
+                <a href="https://linkedin.com/in/sowmyakrishnam" target="_blank" class="bg-teal-700 text-white px-8 py-3 rounded-full text-lg font-semibold border-2 border-white hover:bg-teal-600 transition-all shadow-md transform hover:scale-105">Connect on LinkedIn</a>
             </div>
         </div>
     </section>
 
-    <!-- Professional Summary Section (now "About Me") -->
-    <section id="summary" class="card-section mx-4 md:mx-auto mt-8">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">About Me</h2>
-            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
-                I am a results-oriented Data Analyst with 5 years of experience across  Banking,NBFC and Alcobeb sectors. My passion lies in transforming raw data into actionable insights that drive operational efficiency and support strategic decision-making. I have a proven track record in building dynamic real-time dashboards, automating critical MIS reports, and successfully leading complex database migration projects to Azure SQL. I excel at stakeholder engagement, conducting in-depth root cause analysis (RCA), and collaborating cross-functionally to track key performance indicators (KPIs) for leadership. My expertise spans cloud platforms (Azure, Databricks), ETL processes, and ensuring data quality and governance.
-            </p>
+    <!-- About Me Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="section-heading">About Me</h2>
+            <div class="card text-lg leading-relaxed">
+                <p class="mb-4">
+                    As a Data Analyst with 5 years of experience across FinTech, Banking, and Product-based sectors, I bring a robust skill set in Business Intelligence (Power BI, Tableau), SQL (MS SQL, Oracle, Databricks), and Cloud Data Migration (Azure SQL). My expertise lies in transforming raw data into actionable insights that drive strategic decision-making.
+                </p>
+                <p class="mb-4">
+                    I am adept at KPI reporting, designing and optimizing ETL pipelines, and automating MIS workflows, ensuring data reliability and efficiency. My work also extends to regulatory compliance, where I've developed critical dashboards for daily and weekly monitoring.
+                </p>
+                <p class="mb-4">
+                    Beyond technical proficiency, I excel in root-cause analysis, stakeholder management, and delivering executive-level data insights. I am proficient with Azure, Databricks, Power Automate, and Python, leveraging these tools to build comprehensive analytical automation solutions. My goal is to empower organizations with data-driven clarity and operational excellence.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Core Competencies Section -->
-    <section id="competencies" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">My Expertise</h2>
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="section-heading">Technical Skills</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-chart-bar text-purple-600 mr-3"></i>Business Intelligence</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>Power BI, Tableau</li>
-                        <li>Smart Narratives, KPI Dashboards</li>
+                <!-- Skill Category: Business Intelligence & Visualization -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=BI" alt="BI Icon" class="mr-3 rounded-full">
+                        Business Intelligence & Visualization
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Power BI (Dashboard Development, KPI Dashboards, Smart Narrative)</li>
+                        <li>Data Modelling</li>
+                        <li>DAX</li>
+                        <li>Tableau</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-database text-blue-600 mr-3"></i>SQL Expertise</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>MS SQL Server, Oracle</li>
-                        <li>Databricks SQL, Spark SQL</li>
+                <!-- Skill Category: Databases & SQL -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=SQL" alt="SQL Icon" class="mr-3 rounded-full">
+                        Databases & SQL
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>MS SQL Server</li>
+                        <li>Oracle</li>
+                        <li>Spark SQL</li>
+                        <li>Data Warehousing</li>
+                        <li>ETL Pipelines</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-cloud text-teal-600 mr-3"></i>Cloud & Data Engineering</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>Azure SQL, ADF (Beginner)</li>
-                        <li>SSIS</li>
+                <!-- Skill Category: Cloud & Data Integration -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=Cloud" alt="Cloud Icon" class="mr-3 rounded-full">
+                        Cloud & Data Integration
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Azure Data Factory (ADF – Beginner)</li>
+                        <li>Azure SQL</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-robot text-red-600 mr-3"></i>Workflow Automation</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
+                <!-- Skill Category: Automation & Scripting -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=Auto" alt="Automation Icon" class="mr-3 rounded-full">
+                        Automation & Scripting
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Logic Apps</li>
                         <li>Power Automate</li>
-                        <li>Python (basic)</li>
+                        <li>Python (Basic Automation, Data Cleaning, ETL Automation(Pandas, NumPy, Matplotlib))</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-file-alt text-green-600 mr-3"></i>Reporting & Compliance</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>MIS Reporting, RBI Compliance</li>
-                        <li>UAT, BRD</li>
+                <!-- Skill Category: Data Governance & Reporting -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=Gov" alt="Governance Icon" class="mr-3 rounded-full">
+                        Data Governance & Reporting
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>RBI Regulatory Compliance</li>
+                        <li>MIS Reporting</li>
+                        <li>Data Integrity</li>
+                        <li>Error Handling</li>
+                        <li>Compliance Dashboards</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-check-circle text-orange-600 mr-3"></i>Data Quality & Governance</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>Data wrangling, integrity checks</li>
-                        <li>Error handling</li>
+                <!-- Skill Category: Project & Collaboration Tools -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=Proj" alt="Project Icon" class="mr-3 rounded-full">
+                        Project & Collaboration Tools
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>JIRA (Kanban)</li>
+                        <li>Agile Documentation</li>
+                        <li>BRD Preparation</li>
+                        <li>UAT Support</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-tasks text-indigo-600 mr-3"></i>Project Management Tools</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>JIRA (Kanban methodology)</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-200">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-3"><i class="fas fa-file-excel text-emerald-600 mr-3"></i>Advanced Excel</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 pl-4">
-                        <li>Data modelling, dashboarding</li>
-                        <li>Forecasting</li>
+                <!-- Skill Category: Advanced Excel -->
+                <div class="card col-span-1 md:col-span-2 lg:col-span-3">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-600 flex items-center">
+                        <img src="https://placehold.co/40x40/20B2AA/FFFFFF?text=Excel" alt="Excel Icon" class="mr-3 rounded-full">
+                        Advanced Excel
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                        <li>Modelling</li>
+                        <li>Pivot Tables</li>
+                        <li>Power Query</li>
+                        <li>Power Pivot</li>
+                        <li>XLOOKUP, INDEX-MATCH</li>
+                        <li>Advanced Conditional Formatting</li>
+                        <li>What-If Analysis (Scenario Manager, Goal Seek)</li>
+                        <li>Dynamic Arrays (FILTER, SORT, UNIQUE, SEQUENCE)</li>
+                        <li>Data Validation</li>
                     </ul>
                 </div>
             </div>
@@ -387,391 +197,346 @@
     </section>
 
     <!-- Professional Experience Section -->
-    <section id="experience" class="card-section mx-4 md:mx-auto mt-8">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Professional Experience</h2>
-            <div class="space-y-10 max-w-4xl mx-auto">
-                <!-- United Breweries -->
-                <div class="experience-item">
-                    <h3 class="text-gray-900">Data Analyst <span class="text-lg font-normal text-gray-600">- United Breweries (Heineken), Bangalore</span></h3>
-                    <p class="text-md text-gray-500 mb-3">Sep 2023 - Present</p>
-                    <ul>
-                        <li>Spearheaded the Oracle to Azure SQL migration with zero downtime and enhanced post-migration query performance.</li>
-                        <li>Developed and maintained real-time Power BI dashboards for tracking production, dispatch, and supply chain KPIs.</li>
-                        <li>Delivered root cause analyses for operational inefficiencies to support strategic interventions.</li>
-                        <li>Built executive summary dashboards in Supply chain for MD/CEO with Smart Narrative insights.</li>
-                        <li>Automated MIS workflows via Power Automate and Python, reducing manual dependencies.</li>
-                    </ul>
-                </div>
-                <!-- Cholamandalam Investment and Finance -->
-                <div class="experience-item">
-                    <h3 class="text-gray-900">Data Analyst <span class="text-lg font-normal text-gray-600">- Cholamandalam Investment and Finance</span></h3>
-                    <p class="text-md text-gray-500 mb-3">Jan 2023 - Aug 2023</p>
-                    <ul>
-                        <li>Automated legacy reports, reducing TAT by 40%, and ensured consistent data availability.</li>
-                        <li>Provided data-driven insights to leadership to support business strategy alignment.</li>
-                        <li>Collaborated with cross-functional teams to define KPIs and visualize progress.</li>
-                    </ul>
-                </div>
-                <!-- HDFC Bank -->
-                <div class="experience-item">
-                    <h3 class="text-gray-900">Junior Data Analyst <span class="text-lg font-normal text-gray-600">- HDFC Bank</span></h3>
-                    <p class="text-md text-gray-500 mb-3">Sep 2020 - Dec 2022</p>
-                    <ul>
-                        <li>Ensured regulatory compliance through accurate RBI reporting and governance controls.</li>
-                        <li>Conducted User Acceptance Testing (UAT) and created detailed BRDs for data systems.</li>
-                        <li>Developed dashboards in Tableau and created stored procedures to enhance reporting agility.</li>
-                        <li>Led data segmentation and campaign performance analysis for business growth initiatives.</li>
-                    </ul>
+    <section id="experience" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="section-heading">Professional Experience & Projects</h2>
+
+            <!-- United Breweries (Heineken) -->
+            <div class="card mb-12">
+                <h3 class="text-3xl font-bold text-indigo-700 mb-4">United Breweries (Heineken), Bangalore</h3>
+                <p class="text-xl font-semibold text-gray-800 mb-6">Data Analyst | Sep 2023 – Present</p>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 mb-8">
+                    <li>Spearheaded Oracle-to-Azure SQL migration with zero downtime, reducing query latency by ~35%.</li>
+                    <li>Developed real-time Power BI dashboards for production, dispatch, and supply chain, enabling rapid RCA.</li>
+                    <li>Built executive-level dashboards featuring Smart Narratives for MD/CEO strategy reviews.</li>
+                    <li>Automated MIS workflows using Power Automate and Python, cutting manual hours by 50%.</li>
+                    <li>Conducted root-cause analyses to drive operational improvements through data insights.</li>
+                </ul>
+
+                <h4 class="text-2xl font-semibold text-teal-600 mb-4">Key Projects:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1: Brewery Dispatch & Production Dashboard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">📊</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Brewery Dispatch & Production Dashboard</h5>
+                            <p class="text-sm text-gray-600">
+                                Purpose: A real-time dashboard designed for the beer industry to monitor and optimize brewery production and dispatch operations.
+                                <br>Key Insights: Tracks daily production volumes, dispatch, SKU-level sales.
+                                <br>Features: Interactive KPI cards, trend charts, and region-wise performance views. Comparison of actuals vs. targets for production and dispatch. Automated alerts for Zero production and dispatches and the reasons behind to the Management Team of supply chain.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 2: Supply Chain KPI Dashboard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">🔗</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Supply Chain KPI Dashboard</h5>
+                            <p class="text-sm text-gray-600">
+                                Developed an interactive Power BI dashboard to monitor critical brewery KPIs:
+                                <br>OPI NONA – Operational Performance Indicator tracking no-order/no-activity downtime on packaging lines.
+                                <br>FTR MICRO – Quality metric evaluating microbe counts in beer samples and identifying microbes impacting product quality (scored on a 100-point scale).
+                                <br>Consumption Metrics – Tracking power, water, CO₂e, and other utility usage per production cycle.
+                                <br>Productivity – Measuring unit functional productivity across packaging and brewing operations.
+                                <br>Per HL Cost – Monitoring cost per hectolitre, factoring production, utilities, and wastage.
+                                <br>Automated data extraction from SAP using logic apps, ADF Pipelines and Databricks, creating real-time performance visibility for operations and management teams.
+                                <br>Delivered KPI cards, variance analysis (Plan vs Actual), and trend reports with dynamic filters (brewery, SKU, pack size, and time period).
+                                <br>Enabled decision-makers to reduce packaging line downtime (OPI), cut microbe-related quality issues by 15%, and lower per HL costs by 8% through data-driven insights.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 3: SQL-to-Azure Migration Architecture -->
+                    <div class="project-item-card">
+                        <div class="project-icon">☁️</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">SQL-to-Azure Migration Architecture</h5>
+                            <p class="text-sm text-gray-600">
+                                Designed and implemented end-to-end SQL Server to Azure SQL Database migration architecture using Azure Data Factory, Data Migration Assistant, and Synapse pipelines.
+                                <br>Optimized ETL workflows and schema transformation to ensure seamless migration of large datasets with minimal downtime.
+                                <br>Configured Azure networking, storage, and monitoring (Log Analytics, Azure Monitor) for secure, scalable database operations post-migration.
+                                <br>Automated data validation, performance tuning, and cost optimization strategies to enhance cloud efficiency and reliability.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 4: Executive Summary Dashboard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">📈</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Executive Summary Dashboard</h5>
+                            <p class="text-sm text-gray-600">
+                                Designed and developed an Executive Summary Dashboard for a leading beer manufacturer, integrating sales, production, and dispatch metrics.
+                                <br>Automated Primary and Secondary Market sales tracking with real-time performance KPIs and growth analytics.
+                                <br>Built target vs. actual comparisons for production and dispatch, enabling faster decision-making for supply chain teams.
+                                <br>Implemented interactive visualizations (Power BI) with drilldowns by region, brand, and brewery for actionable insights.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 5: Finished Goods Ageing Dashboard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">📦</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Finished Goods Ageing Dashboard</h5>
+                            <p class="text-sm text-gray-600">
+                                Designed a Finished Goods Ageing Dashboard for the beer industry to track ageing batches and prioritize FIFO dispatch.
+                                <br>Integrated brewery-level batch, inventory, and dispatch data for real-time monitoring of stock nearing expiry.
+                                <br>Automated email alerts to logistics teams at each brewery, ensuring timely batch movement.
+                                <br>Reduced losses from expired stock and improved inventory turnover and revenue.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 6: Sales Data Automation -->
+                    <div class="project-item-card">
+                        <div class="project-icon">💲</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Sales Data Automation</h5>
+                            <p class="text-sm text-gray-600">
+                                Automated sales data extraction and ingestion for the beer industry, addressing state-wise complexities in India.
+                                <br>Designed and implemented Azure Logic Apps to streamline multi-state data ingestion workflows.
+                                <br>Built robust ETL pipelines in Azure Data Factory (ADF) for processing primary and secondary market sales data.
+                                <br>Created a centralized database with day-level granularity for accurate reporting and analytics.
+                                <br>Reduced manual effort and improved reporting speed, enabling near real-time sales insights across regions.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 7 (Ongoing): Capacity Utilization & Market Share dashboards -->
+                    <div class="project-item-card">
+                        <div class="project-icon">⏳</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Ongoing Projects: Brewery Scorecard & Market Share</h5>
+                            <p class="text-sm text-gray-600">
+                                Designing a Brewery Scorecard to track and analyze performance across key metrics including capacity utilization, production cost, resource consumption, packaging line operational efficiency, cost per hectoliter (Cost/HL), and other KPIs.
+                                <br>Building variance-based performance tracking to identify gaps against targets and benchmarks for each brewery.
+                                <br>Enabling real-time visibility for stakeholders through dashboards and automated reporting.
+                                <br>Supporting data-driven decision-making for production planning, cost optimization, and operational improvements.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Select Projects Section -->
-    <section id="projects" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">My Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cholamandalam Investment & Finance -->
+            <div class="card mb-12">
+                <h3 class="text-3xl font-bold text-indigo-700 mb-4">Cholamandalam Investment & Finance</h3>
+                <p class="text-xl font-semibold text-gray-800 mb-6">Data Analyst | Jan 2023 – Aug 2023</p>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 mb-8">
+                    <li>Automated legacy MIS reporting, decreasing TAT by 40% and improving data reliability.</li>
+                    <li>Designed loan portfolio dashboards for DPD monitoring and risk review.</li>
+                    <li>Partnered with stakeholders to formulate KPIs and visualization standards.</li>
+                </ul>
 
-                <!-- Project 1: Brewery Dispatch & Production Dashboard -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="brewery">
-                    <div class="project-image-container bg-brewery">
-                        <!-- Image for Brewery Dispatch -->
-                        <img src="https://placehold.co/600x400/A78BFA/ffffff?text=Beer+Dispatch" alt="Brewery Dispatch" class="w-full h-full object-cover rounded-t-xl">
+                <h4 class="text-2xl font-semibold text-teal-600 mb-4">Key Projects:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1: Branch DPD Heatmap -->
+                    <div class="project-item-card">
+                        <div class="project-icon">🗺️</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Branch DPD Heatmap</h5>
+                            <p class="text-sm text-gray-600">
+                                Designed a color-coded DPD (Days Past Due) heatmap to track overdue accounts across branches for LAP (Loan Against Property), SME, and vehicle loan portfolios.
+                                <br>Implemented risk segmentation (0–30, 31–60, 61–90+ DPD buckets) with intuitive color scales (green, amber, red) to highlight delinquency severity.
+                                <br>Enabled branch-wise performance comparison to identify high-risk geographies and prioritize collections strategy.
+                            </p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Brewery Dispatch & Production Dashboard</h3>
-                        <p class="text-gray-700 text-sm">Built end-to-end Power BI dashboards linked to Azure SQL and automated with Power Automate. Enabled real-time RCA and target vs actual variance tracking.</p>
+                    <!-- Project 2: CSEL DPD Ageing Dashboard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">🗓️</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">CSEL DPD Ageing Dashboard</h5>
+                            <p class="text-sm text-gray-600">
+                                Developed a DPD ageing dashboard to monitor overdue Consumer & Small Enterprise Loans across 0–30, 31–60, 61–90, and 90+ day buckets.
+                                <br>Enabled portfolio risk visibility by branch, product, and borrower segment to identify early delinquency trends.
+                                <br>Automated data ingestion and visualization using SQL and Power BI, ensuring timely portfolio health tracking.
+                                <br>Helped credit and collections teams prioritize follow-ups, reducing NPA risk and improving recovery rates.
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Project 2: Supply Chain KPI Dashboards -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="supplychain">
-                    <div class="project-image-container bg-supplychain">
-                        <!-- SVG Icon for Supply Chain -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17 9h-4V3H7v6H3l8 9 8-9zM3 19h18v2H3z"/>
-                        </svg>
+            <!-- HDFC Bank -->
+            <div class="card mb-12">
+                <h3 class="text-3xl font-bold text-indigo-700 mb-4">HDFC Bank</h3>
+                <p class="text-xl font-semibold text-gray-800 mb-6">Junior Data Analyst | Sep 2020 – Dec 2022</p>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 mb-8">
+                    <li>Developed RBI compliance dashboards (CRR/SLR) for daily/weekly monitoring.</li>
+                    <li>Built Tableau reports and SQL stored procedures to streamline branch performance analysis.</li>
+                    <li>Led segmentation analytics for deposit campaigns and cross-selling initiatives.</li>
+                    <li>Managed UAT processes and authored Business Requirements Documents.</li>
+                </ul>
+
+                <h4 class="text-2xl font-semibold text-teal-600 mb-4">Key Projects:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1: Branch Performance Scorecard -->
+                    <div class="project-item-card">
+                        <div class="project-icon">🏆</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Branch Performance Scorecard</h5>
+                            <p class="text-sm text-gray-600">
+                                Built Branch Performance Scorecard to track key retail liability metrics including Deposits, New Accounts, and Average Balances across branches.
+                                <br>Automated data extraction, cleaning, and aggregation using SQL and Power BI for daily and monthly reporting.
+                                <br>Developed interactive dashboards for regional managers to monitor trends, identify underperforming branches, and track growth KPIs.
+                                <br>Delivered actionable insights by analyzing customer acquisition, retention, and product mix to improve branch-level performance.
+                            </p>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Supply Chain KPI Dashboards</h3>
-                        <p class="text-gray-700 text-sm">Visualized performance metrics like downtime, production loss, and its impact on sales using global cubes, aiding national benchmarking and strategic alignment.</p>
+                    <!-- Project 2: Regulatory Ratio Reporting -->
+                    <div class="project-item-card">
+                        <div class="project-icon">⚖️</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Regulatory Ratio Reporting</h5>
+                            <p class="text-sm text-gray-600">
+                                Automated CRR (Cash Reserve Ratio) and SLR (Statutory Liquidity Ratio) compliance dashboards for the Retail Liabilities portfolio.
+                                <br>Integrated daily transaction and balance data from core banking systems using SQL and ETL workflows.
+                                <br>Built Power BI reports to track compliance ratios in real-time, ensuring adherence to RBI regulatory requirements.
+                                <br>Reduced manual effort by streamlining reporting cycles and enabling early alerts for threshold breaches.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 3: AML Transaction Monitoring -->
+                    <div class="project-item-card">
+                        <div class="project-icon">🚨</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">AML Transaction Monitoring</h5>
+                            <p class="text-sm text-gray-600">
+                                Developed and maintained AML transaction monitoring dashboards for the Retail Liabilities portfolio to identify suspicious activity patterns.
+                                <br>Automated data extraction and transformation from multiple banking systems for daily AML checks using SQL and ETL processes.
+                                <br>Built Power BI visualizations to track high-value transactions, unusual activity, and risk flags in near real-time.
+                                <br>Collaborated with compliance teams to generate case-ready reports for regulatory review and investigations.
+                                <br>Enhanced alert accuracy and reduced false positives by analyzing trends and optimizing monitoring thresholds.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Project 4: Liquidity Risk Analysis -->
+                    <div class="project-item-card">
+                        <div class="project-icon">💧</div>
+                        <div>
+                            <h5 class="font-bold text-lg mb-2">Liquidity Risk Analysis</h5>
+                            <p class="text-sm text-gray-600">
+                                Built liquidity risk monitoring dashboards to track deposit concentration for top 1%, 5%, and 10% of depositors in the Retail Liabilities portfolio.
+                                <br>Automated data aggregation and segmentation using SQL to analyze depositor tiers and exposure risks.
+                                <br>Created Power BI visualizations highlighting high-concentration trends and potential liquidity stress points.
+                                <br>Partnered with risk management teams to develop early-warning insights for deposit outflows and concentration risk.
+                                <br>Improved decision-making by enabling management to assess branch and region-level liquidity exposure proactively.
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Project 3: SQL to Azure Migration -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="azuremigration">
-                    <div class="project-image-container bg-azuremigration">
-                        <!-- SVG Icon for Migration (Database to Cloud) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9v-2h2v2zm0-4H9v-2h2v2zm0-4H9V7h2v2zm3 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm3 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zM7 12c0 2.76 2.24 5 5 5s5-2.24 5-5H7z"/>
-                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-3.72 0-6.75 2.71-7.29 6.21C2.86 10.66 1 12.82 1 15.5c0 3.03 2.47 5.5 5.5 5.5h12.17c2.19 0 3.98-1.79 3.98-3.98 0-2.19-1.79-3.98-3.98-3.98zM12 18l-4-4h3V9h2v5h3l-4 4z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">SQL to Azure Migration</h3>
-                        <p class="text-gray-700 text-sm">Planned and executed end-to-end data migration and architecture redesign from on-prem to Azure. Improved data pipeline efficiency and reporting security.</p>
-                    </div>
-                </div>
-
-                <!-- Project 4: Executive Summary Dashboard -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="executive">
-                    <div class="project-image-container bg-executive">
-                        <!-- SVG Icon for Executive Dashboard (Growth Chart) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16 11V7h-4V3H7v4H3v4h4v4h4v4h4v-4h4v-4h-4zm-2 0h-4V7h4v4z"/>
-                            <path d="M5 18h14V6H5v12zm2-2h10V8H7v8zm-2 4h14v-2H5v2zm0-16h14V2H5v2z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Executive Summary Dashboard</h3>
-                        <p class="text-gray-700 text-sm">Developed an MD-facing dashboard combining key KPIs across manufacturing and dispatch. Used Smart Narrative visualizations for top-level decision support.</p>
-                    </div>
-                </div>
-
-                <!-- Project 5: Finished Goods Ageing Dashboard -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="ageing">
-                    <div class="project-image-container bg-ageing">
-                        <!-- SVG Icon for Ageing Stock (Clock and Box) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                            <path d="M14 10H8c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 6H8v-4h6v4z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Finished Goods Ageing Dashboard</h3>
-                        <p class="text-gray-700 text-sm">Built automated alerting mechanisms to flag ageing stock, reducing potential write-offs and ensuring inventory optimization.</p>
-                    </div>
-                </div>
-
-                <!-- Project 6: Sales Data Management & Automation -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer" data-project="salesautomation">
-                    <div class="project-image-container bg-salesautomation">
-                        <!-- SVG Icon for Sales Automation (Gear and Bars) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.09-.74-1.71-1l-.34-2.52c-.04-.24-.24-.42-.48-.42h-4c-.24 0-.44.18-.48.42l-.34 2.52c-.62.26-1.19.6-1.71 1l-2.49-1c-.22-.08-.49 0-.61.22l-2 3.46c-.12.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.09.74 1.71 1l.34 2.52c.04.24.24.42.48.42h4c.24 0 .44-.18.48-.42l.34-2.52c.62-.26 1.19-.6 1.71-1l2.49 1c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
-                            <path d="M12 17.5c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z"/>
-                        </svg>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Sales Data Management & Automation</h3>
-                        <p class="text-gray-700 text-sm">Automated monthly sales data loads with Python + Power Automate, ensuring data integrity and reducing human error in MIS.</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
     <!-- Key Performance Highlights Section -->
-    <section id="highlights" class="card-section mx-4 md:mx-auto mt-8">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Key Performance Highlights</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-center">
-                <div class="highlight-card">
-                    <p class="text-purple-600">100%</p>
-                    <p class="text-lg text-gray-700">On-time delivery of dashboards and reporting pipelines</p>
+    <section id="highlights" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="section-heading">Key Performance Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card flex items-center p-6">
+                    <img src="https://placehold.co/60x60/34D399/FFFFFF?text=100%" alt="On-time delivery icon" class="mr-4 rounded-full">
+                    <div>
+                        <p class="text-3xl font-bold text-green-600">100%</p>
+                        <p class="text-lg text-gray-700">on-time delivery of analytics dashboards and reporting pipelines.</p>
+                    </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="text-blue-600">Zero</p>
-                    <p class="text-lg text-gray-700">Data integrity issues post Oracle to Azure migration</p>
+                <div class="card flex items-center p-6">
+                    <img src="https://placehold.co/60x60/EF4444/FFFFFF?text=Zero" alt="Data integrity icon" class="mr-4 rounded-full">
+                    <div>
+                        <p class="text-3xl font-bold text-red-600">Zero</p>
+                        <p class="text-lg text-gray-700">post-migration data integrity issues following Oracle to Azure move.</p>
+                    </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="text-green-600">>90%</p>
-                    <p class="text-lg text-gray-700">Stakeholder satisfaction (qualitative feedback from cross-functional teams)</p>
+                <div class="card flex items-center p-6">
+                    <img src="https://placehold.co/60x60/FBBF24/FFFFFF?text=90%2B" alt="Stakeholder satisfaction icon" class="mr-4 rounded-full">
+                    <div>
+                        <p class="text-3xl font-bold text-yellow-600:>90%</p>
+                        <p class="text-lg text-gray-700">stakeholder satisfaction, based on feedback surveys.</p>
+                    </div>
                 </div>
-                <div class="highlight-card">
-                    <p class="text-red-600">>30%</p>
-                    <p class="text-lg text-gray-700">Improvement in data-driven decision-making for leadership reviews</p>
+                <div class="card flex items-center p-6">
+                    <img src="https://placehold.co/60x60/3B82F6/FFFFFF?text=30%" alt="Decision making icon" class="mr-4 rounded-full">
+                    <div>
+                        <p class="text-3xl font-bold text-blue-600">Enabled 30%</p>
+                        <p class="text-lg text-gray-700">faster leadership decision-making through real-time KPI insights.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="card-section bg-gray-100 mx-4 md:mx-auto mt-8">
-        <div class="container text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-10">Education</h2>
-            <div class="education-card max-w-xl mx-auto">
-                <h3 class="text-2xl font-semibold text-gray-900 mb-2">MBA - Banking Technology</h3>
+    <!-- Education & Certification Section -->
+    <section id="education" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="section-heading">Education & Certification</h2>
+            <div class="card text-center">
+                <img src="https://placehold.co/80x80/20B2AA/FFFFFF?text=MBA" alt="MBA Icon" class="mx-auto mb-4 rounded-full">
+                <h3 class="text-2xl font-semibold text-indigo-700 mb-2">MBA in Banking Technology</h3>
                 <p class="text-xl text-gray-700">May 2020</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="card-section mx-4 md:mx-auto mt-8 mb-8">
-        <div class="container text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-10">Get In Touch</h2>
-            <p class="text-lg text-gray-700 mb-8">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-            <div class="contact-cta-buttons">
-                <a href="mailto:krishnamsowmya456@gmail.com" class="cta-button primary">
-                    <i class="fas fa-envelope mr-3"></i>Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/sowmya-krishnam" target="_blank" class="cta-button secondary">
-                    <i class="fab fa-linkedin mr-3"></i>Connect on LinkedIn
-                </a>
-                <a href="tel:+918333938185" class="cta-button primary">
-                    <i class="fas fa-phone mr-3"></i>Call Me
-                </a>
+    <section id="contact" class="py-16 md:py-24 bg-gray-900 text-white">
+        <div class="container mx-auto px-4 max-w-3xl text-center">
+            <h2 class="text-4xl font-bold mb-12">Get in Touch</h2>
+            <div class="flex flex-col items-center space-y-6">
+                <div class="flex items-center space-x-4">
+                    <img src="https://placehold.co/40x40/FFFFFF/20B2AA?text=📧" alt="Email Icon" class="rounded-full">
+                    <span id="email-text" class="text-xl">krishnamsowmya456@gmail.com</span>
+                    <button onclick="copyToClipboard('email-text')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg shadow-md transition-colors">Copy</button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="https://placehold.co/40x40/FFFFFF/20B2AA?text=📞" alt="Phone Icon" class="rounded-full">
+                    <span id="phone-text" class="text-xl">+918333938185</span>
+                    <button onclick="copyToClipboard('phone-text')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg shadow-md transition-colors">Copy</button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="https://placehold.co/40x40/FFFFFF/20B2AA?text=🔗" alt="LinkedIn Icon" class="rounded-full">
+                    <a href="https://linkedin.com/in/sowmyakrishnam" target="_blank" class="text-xl text-teal-200 hover:underline">linkedin.com/in/sowmyakrishnam</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 text-center">
-        <div class="container">
-            <p>&copy; 2024 Sowmya Krishnam. All rights reserved.</p>
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Sowmya Krishnam. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Project Modal Structure -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="modalProjectTitle" class="text-3xl font-bold text-gray-900 mb-4"></h3>
-            <p id="modalProjectDescription" class="text-gray-700 text-lg leading-relaxed"></p>
-            <div id="modalProjectDetails" class="mt-6 text-gray-800">
-                <!-- Additional details will be inserted here by JS -->
-            </div>
-        </div>
-    </div>
+    <!-- Copy Message -->
+    <div id="copyMessage" class="copy-message">Copied to clipboard!</div>
 
     <script>
-        // Project data for modal
-        const projectsData = {
-            brewery: {
-                title: "Brewery Dispatch & Production Dashboard",
-                description: "Built end-to-end Power BI dashboards linked to Azure SQL and automated with Power Automate. Enabled real-time RCA and target vs actual variance tracking.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Developed interactive Power BI dashboards for real-time monitoring.</li>
-                        <li>Integrated with Azure SQL for robust data storage.</li>
-                        <li>Automated data refresh and reporting using Power Automate.</li>
-                        <li>Facilitated root cause analysis (RCA) for production bottlenecks.</li>
-                        <li>Provided insights for target vs actual variance tracking.</li>
-                    </ul>
-                `
-            },
-            supplychain: {
-                title: "Supply Chain KPI Dashboards",
-                description: "Visualized performance metrics like downtime, production loss, and its impact on sales using global cubes, aiding national benchmarking and strategic alignment.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Designed comprehensive dashboards for supply chain performance.</li>
-                        <li>Utilized global cubes for consistent data aggregation.</li>
-                        <li>Enabled national benchmarking for operational excellence.</li>
-                        <li>Supported strategic alignment by highlighting key performance indicators.</li>
-                    </ul>
-                `
-            },
-            azuremigration: {
-                title: "SQL to Azure Migration",
-                description: "Planned and executed end-to-end data migration and architecture redesign from on-prem to Azure. Improved data pipeline efficiency and reporting security.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Successfully migrated large datasets from on-prem to Azure SQL.</li>
-                        <li>Redesigned data architecture for scalability and performance.</li>
-                        <li>Enhanced data pipeline efficiency post-migration.</li>
-                        <li>Implemented robust security measures for reporting.</li>
-                        <li>Achieved zero downtime during the migration process.</li>
-                    </ul>
-                `
-            },
-            executive: {
-                title: "Executive Summary Dashboard",
-                description: "Developed an MD-facing dashboard combining key KPIs across manufacturing and dispatch. Used Smart Narrative visualizations for top-level decision support.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Created high-level dashboards for executive decision-making.</li>
-                        <li>Integrated data from multiple departments (manufacturing, dispatch).</li>
-                        <li>Leveraged Power BI's Smart Narratives for automated insights.</li>
-                        <li>Provided clear, concise summaries for leadership reviews.</li>
-                    </ul>
-                `
-            },
-            ageing: {
-                title: "Finished Goods Ageing Dashboard",
-                description: "Built automated alerting mechanisms to flag ageing stock, reducing potential write-offs and ensuring inventory optimization.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Implemented automated alerts for stock nearing expiry.</li>
-                        <li>Significantly reduced potential write-offs due to aged inventory.</li>
-                        <li>Optimized inventory levels and turnover.</li>
-                        <li>Provided real-time visibility into finished goods ageing.</li>
-                    </ul>
-                `
-            },
-            salesautomation: {
-                title: "Sales Data Management & Automation",
-                description: "Automated monthly sales data loads with Python + Power Automate, ensuring data integrity and reducing human error in MIS.",
-                details: `
-                    <p class="mb-2"><strong>Key Achievements:</strong></p>
-                    <ul class="list-disc list-inside space-y-1">
-                        <li>Automated repetitive sales data loading tasks.</li>
-                        <li>Improved data integrity through automated validation checks.</li>
-                        <li>Reduced manual effort and human error in MIS reporting.</li>
-                        <li>Ensured timely and accurate sales data availability.</li>
-                    </ul>
-                `
-            }
-        };
-
-        const projectCards = document.querySelectorAll('.project-card');
-        const modal = document.getElementById('projectModal');
-        const closeButton = document.querySelector('.close-button');
-        const modalProjectTitle = document.getElementById('modalProjectTitle');
-        const modalProjectDescription = document.getElementById('modalProjectDescription');
-        const modalProjectDetails = document.getElementById('modalProjectDetails');
-
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
 
-        closeMobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
+        // Function to copy text to clipboard and show a message
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
 
-        function closeMobileMenu() {
-            mobileMenu.classList.add('hidden');
-        }
-
-        // Function to open the modal
-        function openModal(projectId) {
-            const project = projectsData[projectId];
-            if (project) {
-                modalProjectTitle.textContent = project.title;
-                modalProjectDescription.textContent = project.description;
-                modalProjectDetails.innerHTML = project.details; // Use innerHTML for rich text
-                modal.classList.add('show');
-                modal.style.display = 'flex'; // Use flex to center content
-            }
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            modal.classList.remove('show');
+            const copyMessage = document.getElementById('copyMessage');
+            copyMessage.classList.add('show');
             setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300); // Match animation duration
+                copyMessage.classList.remove('show');
+            }, 2000); // Hide after 2 seconds
         }
 
-        // Event listeners for project cards
-        projectCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const projectId = card.dataset.project;
-                openModal(projectId);
-            });
-        });
-
-        // Event listener for close button
-        closeButton.addEventListener('click', closeModal);
-
-        // Close modal when clicking outside the content
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Optional: Add a simple fade-in animation for sections on scroll
-        const sections = document.querySelectorAll('section');
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            observer.observe(section);
-        });
-
+        // Removed the onerror for project images as they are no longer images
     </script>
 </body>
 </html>
-code.txt
-Displaying code.txt.
